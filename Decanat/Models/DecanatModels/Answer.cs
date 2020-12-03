@@ -56,7 +56,7 @@ namespace Decanat.Models.DecanatModels
         //3 - Отправлен на исправление
         //4 - Просрочен
         //5 - Добавлено время
-        //6 - Предствален с опозданием
+        //6 - Представлен с опозданием
         
         public string statusName
         {

@@ -147,8 +147,8 @@ namespace Decanat.Controllers
             gDAO.sepPlanStatus(true, groupId);
             plan = pDAO.showPlanInfoByGropId(groupId);
             //List<Step> steps = new List<Step>();
-            //List<Step> steps = stepDAO.getStepsByPlanId(plan.id);
-            //PlanAndStepsViewModel pASVM = new PlanAndStepsViewModel(plan, steps);
+            List<Step> steps = stepDAO.getStepsByPlanId(plan.id);
+            PlanAndStepsViewModel pASVM = new PlanAndStepsViewModel(plan, steps);
             
             return RedirectToAction("ShowPlanInfo", new { id = plan.id });
         }

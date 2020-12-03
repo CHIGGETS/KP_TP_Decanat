@@ -11,7 +11,7 @@ namespace Decanat.DAO
     public class GruppaDAO: AbstractDAO
     {
         //Получение названия группы по ID
-        public string getGruppaName(int id) // Реализовать!!1
+        public string getGruppaName(int id)
         {
             string s="";
             Connect();

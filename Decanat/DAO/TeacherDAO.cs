@@ -15,7 +15,7 @@ namespace Decanat.DAO
         public int getTeacherId(string email)
         {
             
-            int id = 1;
+            int id = 0;
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {

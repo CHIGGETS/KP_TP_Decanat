@@ -26,7 +26,7 @@ namespace Decanat.DAO
             {
                 result = false;
                 loger.Error("Произошла ошибка при добавлении плана-графика");
-                //loger.Trace(e.StackTrace);
+                loger.Trace(e.StackTrace);
             }
             finally
             {
@@ -68,11 +68,11 @@ namespace Decanat.DAO
         //Вывод информации о ПГ
         public Plan showPlanInfo(int id)
         {
+            Connect();
             Plan plan = new Plan();
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                Connect();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Plan WHERE Id=@Id", Connection);
                 cmd.Parameters.Add(new SqlParameter("@Id", id));
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -82,6 +82,7 @@ namespace Decanat.DAO
                     plan.gpoupId = Convert.ToInt32(reader["GruppaId"]);
                     plan.status = Convert.ToInt32(reader["Status"]);
                     loger.Info("Успешный запрос информации о плане-графике");
+
                 } 
             }
             catch (Exception e)

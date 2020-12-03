@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Decanat.Models.DecanatModels;
 using Decanat.DAO;
+
 namespace Decanat.Tests.Controllers
 {
-    [TestClass]
     class HomeController
     {
-        [TestMethod]
+        [SetUp]
         public void setMarkTest()
         {
             int id = 3;
@@ -27,7 +27,7 @@ namespace Decanat.Tests.Controllers
             aDAO.setStatus(id, temp);
             
         }
-        [TestMethod]
+        [SetUp]
         public void setstatusTest()
         {
             int id = 3;

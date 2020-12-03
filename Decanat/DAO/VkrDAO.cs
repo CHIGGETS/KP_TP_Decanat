@@ -28,7 +28,8 @@ namespace Decanat.DAO
             }
             catch(Exception e)
             {
-                //
+                loger.Error("Произошла ошибка получить Название ВКР");
+                loger.Trace(e.StackTrace);
             }
             finally
             {
