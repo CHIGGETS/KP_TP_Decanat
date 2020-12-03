@@ -26,7 +26,7 @@ namespace Decanat.Models.DecanatModels
             this.kafedraId = kafedra;
             this.email = email;
         }
-        public Teacher(string surname, string firstName, string patr, string position, int kafedra)
+        public Teacher( string surname, string firstName, string patr, string position, int kafedra)
         {
             this.surname = surname;
             this.firstName = firstName;

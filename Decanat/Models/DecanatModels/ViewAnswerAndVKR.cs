@@ -38,9 +38,9 @@ namespace Decanat.Models.DecanatModels
         }
         public ViewAnswerAndVKR(VKR vkr)
         {
-            this.vkr = vkr;
+            this.vkr =vkr;
         }
-        public ViewAnswerAndVKR(VKR vkr, int id)
+        public ViewAnswerAndVKR(VKR vkr, int id) 
         {
             this.vkr = vkr;
             this.id = id;

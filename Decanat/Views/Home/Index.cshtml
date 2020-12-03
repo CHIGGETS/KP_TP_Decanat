@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h2></h2>
+<h2>
+</h2>
 @if (User.IsInRole("Admin"))
 {
     <p>
@@ -28,6 +29,7 @@ else
                     Статус
                 </th>
                 <th>
+
                 </th>
             </tr>
             @foreach (var item in Model.answers)
@@ -64,6 +66,7 @@ else
                         <th>
                             Дата предоставления
                         </th>
+
                     </tr>
                     @foreach (var item in Model.answers)
                     {
@@ -79,6 +82,7 @@ else
                             </td>
                         </tr>
                     }
+
                 </table>
             }
             else
@@ -140,6 +144,7 @@ else
                                     Группа
                                 </th>
                                 <th>
+
                                 </th>
                             </tr>
                             @foreach (var item in Model.plans)

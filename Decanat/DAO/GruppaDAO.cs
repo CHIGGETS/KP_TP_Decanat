@@ -8,12 +8,12 @@ using System.Web;
 
 namespace Decanat.DAO
 {
-    public class GruppaDAO : AbstractDAO
+    public class GruppaDAO: AbstractDAO
     {
         //Получение названия группы по ID
-        public string getGruppaName(int id)
+        public string getGruppaName(int id) // Реализовать!!1
         {
-            string s = "";
+            string s="";
             Connect();
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
@@ -28,7 +28,7 @@ namespace Decanat.DAO
                     return s;
                 }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при получении информации о группе");
                 loger.Trace(e.StackTrace);
@@ -52,10 +52,10 @@ namespace Decanat.DAO
                 SqlCommand cmd = new SqlCommand("INSERT INTO Gruppa(GroupName, Backlavr, KafedraId) VALUES (@GroupName, @Bakalavr, @KafedraId)", Connection);
                 cmd.Parameters.Add(new SqlParameter("@GroupName", gruppa.groupName));
                 cmd.Parameters.Add(new SqlParameter("@Bakalavr", gruppa.bakalavr));
-                cmd.Parameters.Add(new SqlParameter("@KafedraId", gruppa.kafedraId));
+                cmd.Parameters.Add(new SqlParameter("@KafedraId", gruppa.kafedra));
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 result = false;
                 loger.Error("Произошла ошибка при добавлении группы");
@@ -76,13 +76,13 @@ namespace Decanat.DAO
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Gruppa SET IsHasPlan = @isHasPlan WHERE Id = @id", Connection);
-                cmd.Parameters.Add(new SqlParameter("@isHasPlan", isHasPlan));
+                SqlCommand cmd = new SqlCommand("UPDATE Gruppa SET IsHasPlan = @isHasPlan WHERE Id = @id",Connection);
+                cmd.Parameters.Add(new SqlParameter("@isHasPlan",isHasPlan));
                 cmd.Parameters.Add(new SqlParameter("@id", id));
                 cmd.ExecuteNonQuery();
                 loger.Info("Успешное изменение статуса наличия ПГ у группы");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 result = false;
                 loger.Error("Произошла ошибка при изменении статуса наличия ПГ у группы");
@@ -103,21 +103,21 @@ namespace Decanat.DAO
             Connect();
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Gruppa WHERE Study = 1", Connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Gruppa WHERE Study = 1",Connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     int id = Convert.ToInt32(reader["Id"]);
                     string gruppaName = Convert.ToString(reader["GroupName"]);
                     bool bakalavr = Convert.ToBoolean(reader["Backlavr"]);
-                    int kafedraId = Convert.ToInt32(reader["KafedraId"]);
+                    int kafedra = Convert.ToInt32(reader["KafedraId"]);
                     bool study = Convert.ToBoolean(reader["Study"]);
                     bool isHasPlan = Convert.ToBoolean(reader["IsHasPlan"]);
-                    groups.Add(new Gruppa(id, gruppaName, bakalavr, kafedraId, study, isHasPlan));
+                    groups.Add(new Gruppa(id,gruppaName,bakalavr,kafedra,study,isHasPlan));
                 }
                 loger.Info("Успешное получение информации о группах");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при запросе информации о группах");
                 loger.Trace(e.StackTrace);
@@ -180,7 +180,7 @@ namespace Decanat.DAO
                     plan.gpoupId = Convert.ToInt32(reader["Id"]);
                 }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при запросе информации плане для группы");
                 loger.Trace(e.StackTrace);
@@ -206,7 +206,7 @@ namespace Decanat.DAO
                 cmd.ExecuteNonQuery();
                 loger.Info("Успешное изменение статуса наличия ПГ у группы");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 result = false;
                 loger.Error("Произошла ошибка при изменении статуса наличия ПГ у группы");
@@ -227,7 +227,7 @@ namespace Decanat.DAO
             Gruppa group = new Gruppa();
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Gruppa WHERE Id = @id", Connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Gruppa WHERE Id = @id",Connection);
                 cmd.Parameters.Add(new SqlParameter("@id", id));
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -239,13 +239,13 @@ namespace Decanat.DAO
                     bool isHasPlan = Convert.ToBoolean(reader["IsHasPlan"]);
                     group.id = gId;
                     group.groupName = groupName;
-                    group.kafedraId = kafedraId;
+                    group.kafedra = kafedraId;
                     group.study = study;
                     group.isHasPlan = isHasPlan;
                     loger.Info("Успешный запрос информации о группе");
                 }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при запросе информации о группе");
                 loger.Trace(e.StackTrace);

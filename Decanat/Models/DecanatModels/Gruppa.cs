@@ -14,7 +14,7 @@ namespace Decanat.Models.DecanatModels
         public string groupName { get; set; }
         [Required]
         public bool bakalavr { get; set; }
-        public int kafedraId { get; set; }
+        public int kafedra { get; set; }
         public bool study { get; set; }
         public bool isHasPlan { get; set; }
         public int getPlanId
@@ -71,22 +71,22 @@ namespace Decanat.Models.DecanatModels
             get
             {
                 KafedraDAO kDAO = new KafedraDAO();
-                return kDAO.getKafedraName(kafedraId);
+                return kDAO.getKafedraName(kafedra);
             }
         }
 
-
+        
 
         //***********************************************************************************
         //Конструкторы
         //***********************************************************************************
+        
 
-
-        public Gruppa(string gruppaName, bool bakalavr, int kafedraId)
+        public Gruppa(string gruppaName, bool bakalavr, int kafedra)
         {
             this.groupName = gruppaName;
             this.bakalavr = bakalavr;
-            this.kafedraId = kafedraId;
+            this.kafedra = kafedra;
         }
 
         public Gruppa()
@@ -94,12 +94,12 @@ namespace Decanat.Models.DecanatModels
 
         }
 
-        public Gruppa(int id, string gruppaName, bool bakalavr, int kafedraId, bool study, bool isHasPlan)
+        public Gruppa (int id, string gruppaName, bool bakalavr, int kafedra, bool study, bool isHasPlan)
         {
             this.id = id;
             this.groupName = gruppaName;
             this.bakalavr = bakalavr;
-            this.kafedraId = kafedraId;
+            this.kafedra = kafedra;
             this.study = study;
             this.isHasPlan = isHasPlan;
         }

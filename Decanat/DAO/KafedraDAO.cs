@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Decanat.DAO
 {
-    public class KafedraDAO : AbstractDAO
+    public class KafedraDAO: AbstractDAO
     {
         //Получение названия кафедры
         public string getKafedraName(int id)
@@ -26,7 +26,7 @@ namespace Decanat.DAO
                     return name;
                 }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при запросе названия группы");
                 loger.Trace(e.StackTrace);
@@ -56,7 +56,7 @@ namespace Decanat.DAO
                     kaf.email = Convert.ToString(reader["Email"]);
                 }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при запросе инфаормации о группе");
                 loger.Trace(e.StackTrace);
@@ -76,18 +76,18 @@ namespace Decanat.DAO
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Kafedra", Connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Kafedra",Connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     int id = Convert.ToInt32(reader["Id"]);
                     string name = Convert.ToString(reader["Name"]);
                     string email = Convert.ToString(reader["email"]);
-                    kafedras.Add(new Kafedra(id, name, email));
+                    kafedras.Add(new Kafedra(id,name,email));
                 }
                 loger.Info("Успешное получение информации о всех кафедрах");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при запросе инфаормации о группе");
                 loger.Trace(e.StackTrace);
@@ -112,7 +112,7 @@ namespace Decanat.DAO
                 cmd.ExecuteNonQuery();
                 loger.Info("Успешное добавление кафедры" + kafedra.name);
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 result = false;
                 loger.Error("Произошла ошибка при запросе инфаормации о группе");

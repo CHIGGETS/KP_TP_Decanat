@@ -1,12 +1,15 @@
 ﻿@model Decanat.Models.DecanatModels.Gruppa
+
 @{
     ViewBag.Title = "AddGroup";
 }
+
 <h2>Добавление группы</h2>
-@using (Html.BeginForm())
+
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -17,6 +20,7 @@
                 @Html.ValidationMessageFor(model => model.groupName, "Поле должно быть заполненно", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.Label("Бакалавриат/магистратура", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -27,6 +31,7 @@
             </div>
         </div>
 
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -34,6 +39,7 @@
         </div>
     </div>
 }
+
 <div>
     @Html.ActionLink("Вернуться домой", "Index")
 </div>

@@ -24,14 +24,13 @@ namespace Decanat.Models.DecanatModels
             }
         }
         public bool isHasVKR { get; set; }
-        public string getIsHasVKR
-        {
+        public string getIsHasVKR {
             get
             {
                 if (isHasVKR) return "Уже работает над ВКР";
                 else return "Данные о ВКР пока не добавлены";
             }
-        }
+                }
         public int getVKR
         {
             get
@@ -71,7 +70,7 @@ namespace Decanat.Models.DecanatModels
 
         }
 
-        public Student(int id, string surname, string firstName, string patronymic, string mobileNomber, string email, int gruppaId)
+        public Student(int id, string surname, string firstName, string patronymic, string mobileNomber, string email, int gruppaId) 
         {
             this.id = id;
             this.surname = surname;
@@ -90,7 +89,7 @@ namespace Decanat.Models.DecanatModels
             this.email = email;
             this.gruppaId = gruppaId;
         }
-        public Student(int id, string surname, string firstName, string patronymic, string mobileNomber, string email)
+        public Student (int id, string surname, string firstName, string patronymic, string mobileNomber, string email)
         {
             this.id = id;
             this.surname = surname;
@@ -102,6 +101,6 @@ namespace Decanat.Models.DecanatModels
 
 
 
-
+        
     }
 }

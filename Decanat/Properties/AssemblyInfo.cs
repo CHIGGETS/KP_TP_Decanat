@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Decanat")]
-[assembly: AssemblyCopyright("© , 2020")]
+[assembly: AssemblyCopyright("© , 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для ID библиотеки типов typelib, если этот проект видим для COM
-[assembly: Guid("0190e4e3-b57b-41bf-908e-80603b12613a")]
+[assembly: Guid("a9dd879e-cdc2-44ed-bf90-ebe6b1b309ef")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

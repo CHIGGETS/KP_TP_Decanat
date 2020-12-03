@@ -23,11 +23,9 @@ namespace Decanat.Models.DecanatModels
             this.theme = theme;
         }
 
-
-        public string getStatus
+        
+        public string getStatus { get
         {
-            get
-            {
                 switch (status)
                 {
                     case (1):
@@ -41,13 +39,13 @@ namespace Decanat.Models.DecanatModels
                     default:
                         return "Не удалось загрузить статус работы";
                 }
-            }
+            } 
         }
-
+        
         //*****************************************************
         //Кострукторы
         //*****************************************************
-
+        
         public VKR(int id, string theme, int studentId, int teacherId, int status)
         {
             this.id = id;
@@ -70,5 +68,5 @@ namespace Decanat.Models.DecanatModels
 
         }
     }
-
+     
 }

@@ -11,7 +11,7 @@ namespace Decanat.DAO
 {
     public class StudentDAO : AbstractDAO
     {
-
+        
         //Получение информации о студенте
         public Student getStudentInfo(int id)
         {
@@ -32,9 +32,9 @@ namespace Decanat.DAO
                     string tEmail = Convert.ToString(reader["Email"]);
                     int tGruppaId = Convert.ToInt32(reader["GruppaId"]);
                     bool isHasVKR = Convert.ToBoolean(reader["IsHasVKR"]);
-                    st.id = tId; st.surname = tSurname; st.firstName = tFirstName; st.patronymic = tPanronymic;
-                    st.mobileNomber = tMobileNomber; st.email = tEmail; st.gruppaId = tGruppaId; st.isHasVKR = isHasVKR;
-                }
+                st.id = tId; st.surname = tSurname; st.firstName = tFirstName; st.patronymic = tPanronymic;
+                st.mobileNomber = tMobileNomber; st.email = tEmail; st.gruppaId = tGruppaId; st.isHasVKR = isHasVKR;
+            }
             }
 
             catch (Exception e)
@@ -93,16 +93,16 @@ namespace Decanat.DAO
                     id = Convert.ToInt32(reader["Id"]);
                     return id;
                 }
-
+                
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при поиске студента");
                 loger.Trace(e.StackTrace);
             }
             finally
             {
-                Disconnect();
+                Disconnect(); 
             }
             return id;
         }
@@ -161,7 +161,7 @@ namespace Decanat.DAO
                 }
                 loger.Info("Успешный заспрос информации о всех студентах в группе");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при Запросе информации о всех студентах в группе");
                 loger.Trace(e.StackTrace);
@@ -192,12 +192,12 @@ namespace Decanat.DAO
                 }
                 reader.Close();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO AspNetUserRoles (userId, roleId) " +
-                        "VALUES (@userId, 4)", Connection);
-                cmd.Parameters.Add(new SqlParameter("@userId", id));
+            SqlCommand cmd = new SqlCommand("INSERT INTO AspNetUserRoles (userId, roleId) " +
+                    "VALUES (@userId, 4)", Connection);
+            cmd.Parameters.Add(new SqlParameter("@userId", id));
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 result = false;
                 loger.Error("Произошла ошибка при присвоении роли");
@@ -210,6 +210,6 @@ namespace Decanat.DAO
             return result;
         }
     }
-
-
+       
+    
 }

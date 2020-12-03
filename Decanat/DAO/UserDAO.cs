@@ -7,32 +7,31 @@ using System.Linq;
 using System.Web;
 
 namespace Decanat.DAO
-{ 
-    public class UserDAO : AbstractDAO
 {
-    public List<string> getUnregistegUser()
+    public class UserDAO: AbstractDAO
     {
-        List<string> users = new List<string>();
-        string ConnectionScting = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        try
+        public List<string> getUnregistegUser()
         {
-            Connection = new SqlConnection(ConnectionScting);
-            Connection.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM AspNetUsers WHERE  Id NOT IN (SELECT UserID FROM AspNetUserRoles)", Connection);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                string email = Convert.ToString(reader["Email"]);
-                users.Add(Convert.ToString(reader["Email"]));
+            List<string> users = new List<string>();
+            string ConnectionScting = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            try{
+                Connection = new SqlConnection(ConnectionScting);
+                Connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM AspNetUsers WHERE  Id NOT IN (SELECT UserID FROM AspNetUserRoles)", Connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string email = Convert.ToString(reader["Email"]);
+                    users.Add(Convert.ToString(reader["Email"]));
+                }
+                reader.Close();
             }
-            reader.Close();
+            catch(Exception e)
+            {
+                loger.Error("Произошла ошибка при запросе пользоователей без ролей");
+                loger.Trace(e.StackTrace);
+            }
+            return users;
         }
-        catch (Exception e)
-        {
-            loger.Error("Произошла ошибка при запросе пользоователей без ролей");
-            loger.Trace(e.StackTrace);
-        }
-        return users;
     }
-}
 }

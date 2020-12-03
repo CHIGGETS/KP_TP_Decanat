@@ -9,13 +9,13 @@ using System.Web;
 
 namespace Decanat.DAO
 {
-    public class TeacherDAO : AbstractDAO
+    public class TeacherDAO: AbstractDAO
     {
         //Получить ID учителя по email
         public int getTeacherId(string email)
         {
-
-            int id = 0;
+            
+            int id = 1;
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
@@ -80,13 +80,13 @@ namespace Decanat.DAO
                 cmd.Parameters.Add(new SqlParameter("@Surname", teacher.surname));
                 cmd.Parameters.Add(new SqlParameter("@FirstName", teacher.firstName));
                 cmd.Parameters.Add(new SqlParameter("@Patronymic", teacher.patronymic));
-                cmd.Parameters.Add(new SqlParameter("@Position", teacher.position));
+                cmd.Parameters.Add(new SqlParameter("@Position",teacher.position));
                 cmd.Parameters.Add(new SqlParameter("@KafedraId", teacher.kafedraId));
                 cmd.Parameters.Add(new SqlParameter("@Email", teacher.email));
                 cmd.ExecuteNonQuery();
                 addTeacherRole(teacher);
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 result = false;
                 loger.Error("Произошла ошибка при добавлнеии преподавателя");
@@ -98,7 +98,7 @@ namespace Decanat.DAO
             }
             return result;
         }
-
+        
         //Запрос всех препадователей кафедрры
         public List<Teacher> getAllTeachersByKafedra(int id)
         {
@@ -119,11 +119,11 @@ namespace Decanat.DAO
                     string position = Convert.ToString(reader["Position"]);
                     string email = Convert.ToString(reader["email"]);
                     int kafedraId = Convert.ToInt32(reader["kafedraId"]);
-                    teachers.Add(new Teacher(tId, surname, firstName, patronymic, position, kafedraId, email));
+                    teachers.Add(new Teacher(tId, surname,firstName,patronymic,position,kafedraId,email));
                 }
                 loger.Info("Успешный запрос данных о преподавателях");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 loger.Error("Произошла ошибка при добавлнеии преподавателя");
                 loger.Trace(e.StackTrace);
@@ -171,5 +171,5 @@ namespace Decanat.DAO
         }
     }
 
-
+     
 }
