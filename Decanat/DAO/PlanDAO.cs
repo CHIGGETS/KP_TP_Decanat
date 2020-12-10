@@ -18,22 +18,23 @@ namespace Decanat.DAO
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Plan (GruppaId) VALUES (@GruppaId)", Connection);
-                cmd.Parameters.Add(new SqlParameter("@GruppaId", plan.gpoupId));
+                SqlCommand cmd = new SqlCommand("INSERT INTO Plan (GruppaId, Status) VALUES " + "(@GruppaId, @Status)", Connection);
+                cmd.Parameters.Add(new SqlParameter("@Surname", plan.gpoupId));
+                cmd.Parameters.Add(new SqlParameter("@Status", plan.status));
                 cmd.ExecuteNonQuery();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                result = false;
-                loger.Error("Произошла ошибка при добавлении плана-графика");
-                loger.Trace(e.StackTrace);
-            }
-            finally
-            {
-                Disconnect();
-            }
-            return result;
+            result = false;
+            loger.Error("Произошла ошибка при добавлении плана-графика");
+            loger.Trace(e.StackTrace);
         }
+        finally
+        {
+            Disconnect();
+        }
+        return result;
+    }
         //Поиск планов по статусу
         public List<Plan> showPlansByStatus(int status)
         {
@@ -82,7 +83,6 @@ namespace Decanat.DAO
                     plan.gpoupId = Convert.ToInt32(reader["GruppaId"]);
                     plan.status = Convert.ToInt32(reader["Status"]);
                     loger.Info("Успешный запрос информации о плане-графике");
-
                 } 
             }
             catch (Exception e)
@@ -99,22 +99,20 @@ namespace Decanat.DAO
 
         public Plan showPlanInfoByGropId(int groupId)
         {
+            Connect();
             Plan plan = new Plan();
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                Connect();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Plan WHERE GruppaId=@Id", Connection);
-                cmd.Parameters.Add(new SqlParameter("@Id", groupId));
+                
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Plan WHERE GruppaId=@GruppaId", Connection);
+                cmd.Parameters.Add(new SqlParameter("@GruppaId", groupId));
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                while (reader.Read())
                 {
                     plan.id = Convert.ToInt32(reader["Id"]);
                     plan.gpoupId = Convert.ToInt32(reader["GruppaId"]);
                     plan.status = Convert.ToInt32(reader["Status"]);
-                    loger.Info("Успешный запрос информации о плане-графике");
-                    loger.Info(plan.id + " " + plan.status + "  " + plan.gpoupId);
-                    return plan;
                 }
             }
             catch (Exception e)

@@ -47,9 +47,10 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("E-mail", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("e-mail", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownListFor(model => model.email, ViewBag.Users as SelectList)
+                @Html.DropDownListFor(model => model.email, ViewBag.Users as SelectList)
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -80,17 +80,17 @@ namespace Decanat.DAO
         //Получить ID студента по email
         public int getStudentId(string email)
         {
+            Connect();
             int id = 0;
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                Connect();
                 SqlCommand cmd = new SqlCommand("SELECT Id FROM Student WHERE Email = @email", Connection);
                 cmd.Parameters.Add(new SqlParameter("@email", email));
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    id = Convert.ToInt32(reader["Id"]);
+                    id = Convert.ToInt32("Id");
                     return id;
                 }
                 
@@ -114,13 +114,13 @@ namespace Decanat.DAO
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Student (Surname, FirstName, Patrinymic, MobileNubmber, Email, GruppaId) VALUES " +
-                    "(@Surname, @FirstName, @Patronymic, @MobileNumber, @Email, @GruppaId)", Connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Student (Surname, FirstName, Patrinymic, MobileNubmber, Email, isHasVKR, GruppaId) VALUES " + "(@Surname, @FirstName, @Patronymic, @MobileNumber, @Email, @isHasVKR, @GruppaId)", Connection);
                 cmd.Parameters.Add(new SqlParameter("@Surname", student.surname));
                 cmd.Parameters.Add(new SqlParameter("@FirstName", student.firstName));
                 cmd.Parameters.Add(new SqlParameter("@Patronymic", student.patronymic));
                 cmd.Parameters.Add(new SqlParameter("@MobileNumber", student.mobileNomber));
                 cmd.Parameters.Add(new SqlParameter("@Email", student.email));
+                cmd.Parameters.Add(new SqlParameter("@isHasVKR", student.gruppaId));
                 cmd.Parameters.Add(new SqlParameter("@GruppaId", student.gruppaId));
                 cmd.ExecuteNonQuery();
                 addStudentRole(student);
@@ -188,16 +188,15 @@ namespace Decanat.DAO
                 SqlDataReader reader = cmdA.ExecuteReader();
                 if (reader.Read())
                 {
-                    id = Convert.ToString(reader["Id"]);
+                    id = Convert.ToString("Id");
                 }
                 reader.Close();
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO AspNetUserRoles (userId, roleId) " +
-                    "VALUES (@userId, 4)", Connection);
-            cmd.Parameters.Add(new SqlParameter("@userId", id));
+                SqlCommand cmd = new SqlCommand("INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES (@id, 4)");
+                cmd.Parameters.Add(new SqlParameter("id", id));
                 cmd.ExecuteNonQuery();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 result = false;
                 loger.Error("Произошла ошибка при присвоении роли");

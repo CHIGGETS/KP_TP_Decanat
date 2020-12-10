@@ -45,11 +45,11 @@ namespace Decanat.DAO
             Connect();
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Step(Name, Date, PlanId,Comment) VALUES (@Name, @Date, @PlanId, @Comment)", Connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Step(Name, Date, Comment, PlanId) VALUES (@Name, @Date, @Comment, @PlanId)", Connection);
                 cmd.Parameters.Add(new SqlParameter("@Name", step.name));
                 cmd.Parameters.Add(new SqlParameter("@Date", step.date));
-                cmd.Parameters.Add(new SqlParameter("@PlanId", step.planId));
                 cmd.Parameters.Add(new SqlParameter("@Comment", step.comment));
+                cmd.Parameters.Add(new SqlParameter("@PlanId", step.planId));
                 cmd.ExecuteNonQuery();
             }
             catch(Exception e)

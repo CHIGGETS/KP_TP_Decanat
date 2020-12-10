@@ -19,7 +19,7 @@
             @Html.ActionLink("Отправить на утверждение", "SetPlanStatus", new { id = Model.plan.id, status = 7 })
         </p>
     }
-    if (User.IsInRole("Decan") & Model.plan.status == 7)
+    if (User.IsInRole("Decan") & Model.plan.status == 6)
     {
         <p>
             @Html.ActionLink("Утвердить", "SetPlanStatus", new { id = Model.plan.id, status = 2 })

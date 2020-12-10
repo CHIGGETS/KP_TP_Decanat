@@ -29,7 +29,7 @@ namespace Decanat.Models.DecanatModels
                         return "Отменён";
                     case 5:
                         return "Выполнен";
-                    case 7:
+                    case 6:
                         return "На одобрении";
                     default:
                         return "Ошибка";

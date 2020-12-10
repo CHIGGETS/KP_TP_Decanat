@@ -49,9 +49,11 @@ namespace Decanat.DAO
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Gruppa(GroupName, Backlavr, KafedraId) VALUES (@GroupName, @Bakalavr, @KafedraId)", Connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Gruppa(GroupName, Backlavr, Study, isHasPlan, KafedraId) VALUES (@GroupName, @Bakalavr, @Study, @isHasPlan, @KafedraId)", Connection);
                 cmd.Parameters.Add(new SqlParameter("@GroupName", gruppa.groupName));
                 cmd.Parameters.Add(new SqlParameter("@Bakalavr", gruppa.bakalavr));
+                cmd.Parameters.Add(new SqlParameter("@Study", gruppa.study));
+                cmd.Parameters.Add(new SqlParameter("@isHasPlan", gruppa.isHasPlan));
                 cmd.Parameters.Add(new SqlParameter("@KafedraId", gruppa.kafedra));
                 cmd.ExecuteNonQuery();
             }

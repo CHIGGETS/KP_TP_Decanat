@@ -12,7 +12,7 @@ namespace Decanat.DAO
     {
 
         //Получить Название ВКР
-        public string getVKRName(int id) //Реализовать!!
+        public string getVKRName(int id)
         {
             string s = "";
             Connect();
@@ -28,7 +28,7 @@ namespace Decanat.DAO
             }
             catch(Exception e)
             {
-                loger.Error("Произошла ошибка получить Название ВКР");
+                loger.Error("Произошла ошибка при получении названия ВКР");
                 loger.Trace(e.StackTrace);
             }
             finally

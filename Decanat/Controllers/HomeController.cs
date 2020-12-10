@@ -116,7 +116,7 @@ namespace Decanat.Controllers
         {
             Gruppa group = grup;
             group.kafedra = id;
-            if (gDAO.add(group)) return RedirectToAction("getKafedraInfo", new { id = id});
+            if (gDAO.add(grup)) return RedirectToAction("getKafedraInfo", new { id = id});
             else return View("AddGroup");
         }
 
@@ -126,7 +126,7 @@ namespace Decanat.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Leiter,Decan")]
+        [Authorize(Roles = "Leiter,Decan, Student")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddStep([Bind(Exclude = "ID")] Step step, int id)
         {
@@ -147,8 +147,8 @@ namespace Decanat.Controllers
             gDAO.sepPlanStatus(true, groupId);
             plan = pDAO.showPlanInfoByGropId(groupId);
             //List<Step> steps = new List<Step>();
-            List<Step> steps = stepDAO.getStepsByPlanId(plan.id);
-            PlanAndStepsViewModel pASVM = new PlanAndStepsViewModel(plan, steps);
+            //List<Step> steps = stepDAO.getStepsByPlanId(plan.id);
+            //PlanAndStepsViewModel pASVM = new PlanAndStepsViewModel(plan, steps);
             
             return RedirectToAction("ShowPlanInfo", new { id = plan.id });
         }

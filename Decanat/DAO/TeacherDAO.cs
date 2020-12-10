@@ -14,18 +14,17 @@ namespace Decanat.DAO
         //Получить ID учителя по email
         public int getTeacherId(string email)
         {
-            
+            Connect();
             int id = 0;
             loger.Info("Вызван метод " + new StackTrace(false).GetFrame(0).GetMethod().Name);
             try
             {
-                Connect();
                 SqlCommand cmd = new SqlCommand("SELECT Id FROM Teacher where Email = @email", Connection);
                 cmd.Parameters.Add(new SqlParameter("@email", email));
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    id = Convert.ToInt32(reader["Id"]);
+                    id = Convert.ToInt32("Id");
                     return id;
 
                 }
@@ -41,6 +40,7 @@ namespace Decanat.DAO
             }
             return id;
         }
+
         public int getKafedraId(int id)
         {
             Connect();
@@ -153,7 +153,7 @@ namespace Decanat.DAO
                 }
                 reader.Close();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES (@id, 2)");
+                SqlCommand cmd = new SqlCommand("INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES (@id, 3)");
                 cmd.Parameters.Add(new SqlParameter("id", id));
                 cmd.ExecuteNonQuery();
             }

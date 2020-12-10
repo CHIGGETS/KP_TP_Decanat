@@ -13,7 +13,7 @@
 <p>
     @Html.ActionLink("Добавить преподавателя", "addTeacher", new { id = Model.kafedra.id })
 </p>}
-<table class="table" ">
+<table class="table">
     <tr>
         <th>
             Название групы
@@ -49,7 +49,7 @@
             <td>
                 @if (!item.isHasPlan &&(User.IsInRole("Leiter") || User.IsInRole("Decan")))
                 {
-                    @Html.ActionLink("Добавить ПГ ", "AddPlan", new { groupId = item.id })
+                    @Html.ActionLink("Добавить ПГ ", "AddPlan")
                 }
                 |
                 @Html.ActionLink(" Подробнее", "GetGroupInfo", new { id = item.id })
